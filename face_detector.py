@@ -1,0 +1,16 @@
+from cv2 import *
+im=CascadeClassifier('/home/venkat/Documents/haarcascade_frontalface_default.xml')
+#im=face_cascade.load('haarcascade_frontalface_default.xml')
+img=imread("/home/venkat/Pictures/income2.png")
+img1=cvtColor(img,COLOR_BGR2GRAY)
+face=im.detectMultiScale(img1,scaleFactor=1.05,minNeighbors=5)
+#smile=im1.detectMultiScale(img1,scaleFactor=1.05,minNeighbors=5)
+#print(type(face))
+print(face)
+#print(smile)
+for x,y,w,h in face:
+    img=rectangle(img,(x,y),(x+w,y+h),(0,255,0),3)
+img2=resize(img,((int(img.shape[1]/2),int(img.shape[0]/2))))
+imshow('face',img2)
+waitKey(10000)
+destroyAllWindows()
